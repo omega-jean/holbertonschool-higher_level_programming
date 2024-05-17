@@ -7,8 +7,7 @@ def safe_print_list(my_list=[], x=0):
                 break
             print(my_list[idx], end="")
             count += 1
-            idx += 1
         except IndexError:
             break
-    print(" ")
+    print()
     return count

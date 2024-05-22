@@ -18,7 +18,6 @@ class Rectangle:
             rectangle.append(size)
         return "\n".join(rectangle)
 
-
     @property
     def width(self):
         return self.__width

@@ -3,7 +3,7 @@ def text_indentation(text):
     chars = [":", "?", "."]
     if type(text) != str:
         raise TypeError("text must be a string")
-    
+
     length = len(text)
     i = 0
 

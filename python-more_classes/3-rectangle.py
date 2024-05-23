@@ -12,8 +12,8 @@ class Rectangle:
         height (int): rectangle height
         width (int): rectangle width
         """
-        self.width = width
         self.height = height
+        self.width = width
 
     def __str__(self):
         """Public method that returns a printable rectangle"""

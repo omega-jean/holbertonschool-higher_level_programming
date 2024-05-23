@@ -6,18 +6,18 @@ class Rectangle:
     """Class Rectangle that defines a rectangle"""
 
     def __init__(self, width=0, height=0):
-        """Method that initialize width and height fields
+        """Method that initializes width and height fields
 
-        args:
-        height (int): rectangle height
-        width (int): rectangle width
+        Args:
+            width (int): rectangle width
+            height (int): rectangle height
         """
         self.height = height
         self.width = width
 
     @property
     def width(self):
-        """method of width"""
+        """Method of width"""
         return self.__width
 
     @width.setter
@@ -31,12 +31,12 @@ class Rectangle:
 
     @property
     def height(self):
-        """method of height"""
+        """Method of height"""
         return self.__height
 
     @height.setter
     def height(self, value):
-        """setter method of height"""
+        """Setter method of height"""
         if type(value) != int:
             raise TypeError("height must be an integer")
         if value < 0:

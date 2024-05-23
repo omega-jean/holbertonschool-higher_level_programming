@@ -6,7 +6,12 @@ class Rectangle:
     """class Rectangle that defines a rectangle"""
 
     def __init__(self, width=0, height=0):
-        """Method that initialize width and height fields"""
+        """Method that initialize width and height fields
+
+        args:
+        height (int): rectangle height
+        width (int): rectangle width
+        """
         self.__height = height
         self.__width = width
 

@@ -21,7 +21,7 @@ class Rectangle:
 
     def __str__(self):
         """Public method that returns a printable rectangle"""
-        if self.__width == 0 or self.__height == 0:
+        if self.__width is 0 or self.__height is 0:
             return ""
         size = str(self.print_symbol) * self.__width
         rectangle = []
@@ -46,7 +46,7 @@ class Rectangle:
     @width.setter
     def width(self, value):
         """Setter method of width"""
-        if type(value) != int:
+        if type(value) is not int:
             raise TypeError("width must be an integer")
         if value < 0:
             raise ValueError("width must be >= 0")
@@ -60,7 +60,7 @@ class Rectangle:
     @height.setter
     def height(self, value):
         """setter method of height"""
-        if type(value) != int:
+        if type(value) is not int:
             raise TypeError("height must be an integer")
         if value < 0:
             raise ValueError("height must be >= 0")
@@ -72,6 +72,6 @@ class Rectangle:
 
     def perimeter(self):
         """Public method that returns the perimeter of the rectangle"""
-        if self.__width == 0 or self.__height == 0:
+        if self.__width is 0 or self.__height is 0:
             return 0
         return ((self.width * 2) + (self.height * 2))

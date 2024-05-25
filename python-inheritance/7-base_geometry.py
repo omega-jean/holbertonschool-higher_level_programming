@@ -1,10 +1,9 @@
 #!/usr/bin/python3
-"""BaseGeometry"""
+"""file for class"""
 
 
 class BaseGeometry:
-    """create class BaseGeometry"""
-
+    """create new class basegeometry"""
     def area(self):
         """Public method that returns the area of BaseGeometry"""
         raise Exception("area() is not implemented")

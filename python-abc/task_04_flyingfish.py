@@ -35,7 +35,7 @@ class FlyingFish(Fish, Bird):
         print("The flying fish is soaring!")
 
     def swim(self):
-        """Method for swimming, specific to flying fish."""
+        """Method for swimming, specific to flying fish"""
         print("The flying fish is swimming!")
 
     def habitat(self):

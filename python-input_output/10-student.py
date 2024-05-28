@@ -11,7 +11,7 @@ class Student:
         self.last_name = last_name
         self.age = age
 
-    def to_json(self, attrs = None):
+    def to_json(self, attrs=None):
         """returns the dictionary description with simple data structure"""
         if attrs is None:
             return self.__dict__

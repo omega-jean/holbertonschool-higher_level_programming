@@ -23,11 +23,19 @@ class CustomObject:
 
     def serialize(self, filename):
         """serialize"""
-        with open(filename, "wb", encoding="utf-8") as file:
-            pickle.dump(self, file)
+        try:
+            with open(filename, 'wb') as file:
+                pickle.dump(self, file)
+        except (IOError, pickle.PickleError) as e:
+            print(f"Serialization error: {e}")
+            return None
 
     @classmethod
     def deserialize(cls, filename):
         """deserialize"""
-        with open(filename, "rb", encoding="utf-8") as file:
-            return pickle.dump(file)
+        try:
+            with open(filename, 'rb') as file:
+                return pickle.load(file)
+        except (IOError, pickle.PickleError, EOFError) as e:
+            print(f"Deserialization error: {e}")
+            return None

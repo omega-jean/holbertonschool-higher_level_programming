@@ -13,9 +13,7 @@ if __name__ == "__main__":
                 ORDER BY `c`.`id`")
     results = c.fetchall()
     cities = []
-    for ct in results:
+    print(", ".join([ct[2] for ct in c.fetchall() if ct[4] == sys.argv[4]]))
+    for ct in c.fetchall():
         if ct[4] == sys.argv[4]:
-            cities.append(ct[2])
-    city_string = ", ".join(cities)
-    print(city_string)
-
+            print(ct[2])

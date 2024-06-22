@@ -5,14 +5,17 @@ import sys
 import MySQLdb
 
 if __name__ == "__main__":
-    db = MySQLdb.connect(user=sys.argv[1], passwd=sys.argv[2], db=sys.argv[3], host="localhost", port=3306)
-    cursor = db.cursor()
-    query = ("SELECT cities.name FROM cities "
-             "JOIN states ON cities.state_id = states.id "
-             "WHERE states.name = %s "
-             "ORDER BY cities.id ASC")
-    cursor.execute(query, (sys.argv[4],))
-    cities = cursor.fetchall()
-    print(", ".join([city[0] for city in cities]))
-    cursor.close()
-    db.close()
+    db = MySQLdb.connect(user=sys.argv[1], passwd=sys.argv[2], db=sys.argv[3])
+    c = db.cursor()
+    c.execute("SELECT * FROM `cities` as `c` \
+                INNER JOIN `states` as `s` \
+                   ON `c`.`state_id` = `s`.`id` \
+                ORDER BY `c`.`id`")
+    results = c.fetchall()
+    cities = []
+    for ct in results:
+        if ct[4] == sys.argv[4]:
+            cities.append(ct[2])
+    city_string = ", ".join(cities)
+    print(city_string)
+

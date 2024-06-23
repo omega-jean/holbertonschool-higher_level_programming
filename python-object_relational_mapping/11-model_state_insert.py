@@ -1,21 +1,21 @@
-
 #!/usr/bin/python3
-"""task 11"""
-
-
 import sys
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
-from model_state import State
+from model_state import Base, State
 
 if __name__ == "__main__":
-    engine = create_engine("mysql+mysqldb://{}:{}@localhost/{}"
-                           .format(sys.argv[1], sys.argv[2], sys.argv[3]),
-                           pool_pre_ping=True)
+    username = sys.argv[1]
+    password = sys.argv[2]
+    db_name = sys.argv[3]
+
+    engine = create_engine(f'mysql+mysqldb://{username}:\
+                           {password}@localhost:3306/{db_name}')
+    Base.metadata.create_all(engine)
     Session = sessionmaker(bind=engine)
     session = Session()
-
-    louisiana = State(name="Louisiana")
-    session.add(louisiana)
+    new_state = State(name="Louisiana")
+    session.add(new_state)
     session.commit()
-    print(louisiana.id)
+    print(new_state.id)
+    session.close()

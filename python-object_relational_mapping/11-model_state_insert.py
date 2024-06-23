@@ -1,4 +1,7 @@
 #!/usr/bin/python3
+"""task 11"""
+
+
 import sys
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
@@ -11,7 +14,6 @@ if __name__ == "__main__":
 
     engine = create_engine(f'mysql+mysqldb://{username}:\
                            {password}@localhost:3306/{db_name}')
-    Base.metadata.create_all(engine)
     Session = sessionmaker(bind=engine)
     session = Session()
     new_state = State(name="Louisiana")

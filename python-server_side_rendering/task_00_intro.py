@@ -2,11 +2,8 @@ def generate_invitations(template, attendees):
     if not isinstance(template, str):
         print("Error: Template should be a string.")
         return
-    if not isinstance(attendees, list):
-        print("Error: Attendees should be a list.")
-        return
-    if not all(isinstance(attendee, dict) for attendee in attendees):
-        print("Error: All items in the attendees list should be dictionaries.")
+    if not isinstance(attendees, list) or not all(isinstance(attendee, dict) for attendee in attendees):
+        print("Error: Attendees should be a list of dictionaries.")
         return
     
     if not template:

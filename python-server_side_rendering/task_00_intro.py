@@ -1,30 +1,38 @@
+import os
+
+
 def generate_invitations(template, attendees):
     if not isinstance(template, str):
         print("Error: Template should be a string.")
         return
-    if not isinstance(attendees, list) or not isinstance(attendee, dict):
-        print("Error: Attendees should be a list of dictionaries.")
-        return
-    
+    if not isinstance(attendees, list):
+        for attendee in attendees:
+            if not isinstance(attendee, dict):
+                print("Error: Attendees should be a list of dictionaries.")
+                return
+
     if not template:
-        print("The template is empty, no output files generated")
+        print("Error: The template is empty, no output files generated.")
         return
     if not attendees:
-        print("No data provided, no output files generated")
+        print("Error: No data provided, no output files generated.")
         return
-    
-    for i, attendee in enumerate(attendees, start=1):
-        output_content = template.format(
-            name=attendee.get('name', 'N/A'),
-            event_title=attendee.get('event_title', 'N/A'),
-            event_date=attendee.get('event_date', 'N/A'),
-            event_location=attendee.get('event_location', 'N/A')
-        )
 
-        output_filename = f'output_{i}.txt'
+    for index, attendee in enumerate(attendees, start=1):
+        invitation = template
+        for key in ["name", "event_title", "event_date", "event_location"]:
+            value = attendee.get(key) or "N/A"
+            placeholder = "{" + key + "}"
+            invitation = invitation.replace(placeholder, value)
+        
+        output_filename = f"output_{index}.txt"
+        
+        if os.path.exists(output_filename):
+            print(f"Error: The file {output_filename} already exists.")
+            continue
+        
         try:
-            with open(output_filename, 'w') as output_file:
-                output_file.write(output_content)
-            print(f"Generated {output_filename}")
+            with open(output_filename, 'w') as file:
+                file.write(invitation)
         except Exception as e:
-            print(f"Error writing file {output_filename}: {e}")
+            print(f"Error: Impossible to write to the file {output_filename}. Exception: {e}")

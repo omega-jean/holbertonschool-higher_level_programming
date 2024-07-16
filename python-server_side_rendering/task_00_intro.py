@@ -12,18 +12,21 @@ def generate_invitations(template, attendees):
     if not attendees:
         print("No data provided, no output files generated")
         return
-    for index, attendee in enumerate(attendees, start=1):
-        output = template
+    for i, attendee in enumerate(attendees, start=1):
+        output_content = template.format(
+            name=attendee.get('name', 'N/A'),
+            event_title=attendee.get('event_title', 'N/A'),
+            event_date=attendee.get('event_date', 'N/A'),
+            event_location=attendee.get('event_location', 'N/A')
+        )
 
-        output = output.replace("{name}", attendee.get("name", "N/A") or "N/A")
-        output = output.replace("{event_title}", attendee.get("event_title", "N/A") or "N/A")
-        output = output.replace("{event_date}", attendee.get("event_date", "N/A") or "N/A")
-        output = output.replace("{event_location}", attendee.get("event_location", "N/A") or "N/A")
-
-        output_filename = f"output_{index}.txt"
-        with open(output_filename, "w") as file:
-            file.write(output)
-        print(f"File generated: {output_filename}")
+        output_filename = f'output_{i}.txt'
+        try:
+            with open(output_filename, 'w') as output_file:
+                output_file.write(output_content)
+            print(f"Generated {output_filename}")
+        except Exception as e:
+            print(f"Error writing file {output_filename}: {e}")
 
     if __name__ == "__main__":
         with open('template.txt', 'r') as file:

@@ -4,13 +4,11 @@ import csv
 
 app = Flask(__name__)
 
-# Fonction pour lire et parser le fichier JSON
 def read_json(file_path):
     with open(file_path, 'r') as file:
         data = json.load(file)
     return data
 
-# Fonction pour lire et parser le fichier CSV
 def read_csv(file_path):
     data = []
     with open(file_path, 'r', newline='') as file:
@@ -19,7 +17,6 @@ def read_csv(file_path):
             data.append(row)
     return data
 
-# Route pour afficher les produits en fonction du paramètre source (json ou csv)
 @app.route('/products')
 def products():
     source = request.args.get('source')
